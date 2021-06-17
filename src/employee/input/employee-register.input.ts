@@ -1,11 +1,9 @@
-import { Type } from 'class-transformer';
 import { IsInt, IsString, Max, Min } from 'class-validator';
 
 export class EmployeeRegisterInput {
   @IsString()
   name: string;
 
-  @Type(() => Number)
   @Min(10)
   @Max(150)
   @IsInt()

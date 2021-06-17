@@ -9,7 +9,7 @@ export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
   @ApiTags('employee')
-  @ApiResponse({ status: 201, type: Employee })
+  @ApiResponse({ status: 201, type: EmployeeRegisterInput })
   @Post('register')
   async register(@Body() input: EmployeeRegisterInput): Promise<Employee> {
     return await this.employeeService.register(input);
