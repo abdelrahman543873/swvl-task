@@ -13,5 +13,6 @@ import { EmployeeRepository } from './employee.repository';
   ],
   controllers: [EmployeeController],
   providers: [EmployeeService, EmployeeRepository],
+  exports: [EmployeeRepository],
 })
 export class EmployeeModule {}

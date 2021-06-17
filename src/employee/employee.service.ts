@@ -10,4 +10,8 @@ export class EmployeeService {
   async register(input: EmployeeRegisterInput): Promise<Employee> {
     return this.employeeRepo.register(input);
   }
+
+  async getEmployees(): Promise<Employee[]> {
+    return this.employeeRepo.getEmployees();
+  }
 }

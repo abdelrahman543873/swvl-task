@@ -3,8 +3,9 @@ import { Document } from 'mongoose';
 
 export type CarDocument = Car & Document;
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, versionKey: false })
 export class Car {
+  _id?: string;
   @Prop()
   brand: string;
 

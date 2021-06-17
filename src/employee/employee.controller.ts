@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { EmployeeService } from './employee.service';
 import { EmployeeRegisterInput } from './input/employee-register.input';
@@ -13,5 +13,12 @@ export class EmployeeController {
   @Post('register')
   async register(@Body() input: EmployeeRegisterInput): Promise<Employee> {
     return await this.employeeService.register(input);
+  }
+
+  @ApiTags('employee')
+  @ApiResponse({ status: 201, type: [EmployeeRegisterInput] })
+  @Get('list')
+  async getEmployees(): Promise<Employee[]> {
+    return await this.employeeService.getEmployees();
   }
 }

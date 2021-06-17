@@ -28,6 +28,7 @@
     "@nestjs/swagger": "^4.8.0",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "mongoose": "^5.12.14",
     "mongoose-aggregate-paginate-v2": "^1.0.42",
@@ -35,6 +36,11 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
     "swagger-ui-express": "^4.1.6"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "arch": "x64"
+    }
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",

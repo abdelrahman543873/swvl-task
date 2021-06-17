@@ -5,6 +5,8 @@ export type EmployeeDocument = Employee & Document;
 
 @Schema({ timestamps: true, versionKey: false })
 export class Employee {
+  _id?: string;
+
   @Prop()
   name: string;
 
