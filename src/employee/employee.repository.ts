@@ -14,7 +14,7 @@ export class EmployeeRepository extends BaseRepository<Employee> {
     super(employeeSchema);
   }
 
-  async register(input: EmployeeRegisterInput) {
+  async register(input: EmployeeRegisterInput):Promise<Employee> {
     return await this.employeeSchema.create(input);
   }
 }
