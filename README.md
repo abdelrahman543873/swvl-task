@@ -23,6 +23,7 @@ $ yarn test
 
 ## the app has a full swagger documentation of the api at localhost:3000/api
 ### start the server and go to the documentation url
+### also the app has the erd in the erd.dio file in the project
 
 ## notes
 
