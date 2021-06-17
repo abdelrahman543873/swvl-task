@@ -25,6 +25,7 @@ beforeAll(async () => {
   const module = await moduleRef();
   dotenv.config();
   app = module.createNestApplication();
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
   await app.init();
 });
 
