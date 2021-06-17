@@ -27,4 +27,4 @@ $ yarn test
 
 ## notes
 
-nestjs framework was chosen here to allow for easier documentation of the api using , swagger ui and nestjs/swagger i am able to document the whole api using decorators which is amazing , also all the tests are run in the memory and won't affect your local environment because of the mongodb in memory server , but when you first run the tests of the app allow for extra time for the in memory mongodb server to download
+nestjs framework was chosen here to allow for easier documentation of the api using , swagger ui and nestjs/swagger i am able to document the whole api using decorators which is amazing , also all the tests are run in the memory and won't affect your local environment because of the mongodb in memory server , but when you first run the tests of the app allow for extra time for the in memory mongodb server to download , if you don't have a 64 bit machine pls change the arch property in the package.json to be 32 instead of 64 so the tests can run smoothly
