@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { AddCarInput } from './input/add-car.input';
 import { Car, CarDocument } from './schema/car.schema';
 import { BaseRepository } from '../_common/generics/repository.abstract';
+import { UpdateCarInput } from './input/update-car.input';
 
 @Injectable()
 export class CarRepository extends BaseRepository<Car> {
@@ -20,5 +21,12 @@ export class CarRepository extends BaseRepository<Car> {
 
   async getCars(): Promise<Car[]> {
     return await this.carSchema.find({});
+  }
+
+  async updateCar(input: UpdateCarInput): Promise<Car> {
+    return await this.carSchema.findOneAndUpdate({ _id: input.carId }, input, {
+      new: true,
+      lean: true,
+    });
   }
 }

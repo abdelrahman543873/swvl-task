@@ -5,6 +5,8 @@ import { EmployeeCarRepository } from '../employee-car/employee-car.repository';
 import { EmployeeRepository } from 'src/employee/employee.repository';
 import { BaseHttpException } from '../_common/exceptions/base-http-exception';
 import { Car } from './schema/car.schema';
+import { UpdateCarInput } from './input/update-car.input';
+import { ObjectID } from 'mongodb';
 
 @Injectable()
 export class CarService {
@@ -27,5 +29,11 @@ export class CarService {
 
   async getCars(): Promise<Car[]> {
     return await this.carRepo.getCars();
+  }
+
+  async updateCar(input: UpdateCarInput): Promise<Car> {
+    const car = await this.carRepo.findOne({ _id: new ObjectID(input.carId) });
+    if (!car) throw new BaseHttpException('EN', 601);
+    return await this.carRepo.updateCar(input);
   }
 }
