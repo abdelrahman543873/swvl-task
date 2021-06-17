@@ -16,7 +16,7 @@ export class CarController {
   }
 
   @ApiTags('car')
-  @ApiResponse({ status: 201, type: [Car] })
+  @ApiResponse({ status: 200, type: [Car] })
   @Get('list')
   async getCars(): Promise<Car[]> {
     return await this.carService.getCars();
