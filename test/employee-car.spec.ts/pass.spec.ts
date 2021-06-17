@@ -8,7 +8,7 @@ describe('pass car suite case', () => {
     const res = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: PASS,
-      variables: { employee: employeeCar.employee, car: employeeCar.car },
+      variables: { car: employeeCar.car },
     });
     expect(res.body.balance).toBe(6);
   });
@@ -20,7 +20,7 @@ describe('pass car suite case', () => {
     const res = await testRequest({
       method: HTTP_METHODS_ENUM.POST,
       url: PASS,
-      variables: { employee: employeeCar.employee, car: employeeCar.car },
+      variables: { car: employeeCar.car },
     });
     expect(res.body.balance).toBe(10);
   });

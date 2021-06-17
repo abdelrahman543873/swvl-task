@@ -22,14 +22,13 @@ export class EmployeeCarRepository extends BaseRepository<EmployeeCar> {
 
   async getEmployeeCar(input: PassInput) {
     return await this.employeeCarSchema.findOne({
-      employee: new ObjectID(input.employee),
       car: new ObjectID(input.car),
     });
   }
 
   async pass(input: PassInput): Promise<EmployeeCar> {
     return await this.employeeCarSchema.findOneAndUpdate(
-      { car: new ObjectID(input.car), employee: new ObjectID(input.employee) },
+      { car: new ObjectID(input.car) },
       { $inc: { balance: -4 } },
       {
         new: true,
