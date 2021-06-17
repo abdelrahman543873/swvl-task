@@ -17,4 +17,8 @@ export class CarRepository extends BaseRepository<Car> {
   async addCar(input: AddCarInput): Promise<Car> {
     return this.carSchema.create(input);
   }
+
+  async getCars(): Promise<Car[]> {
+    return await this.carSchema.find({});
+  }
 }

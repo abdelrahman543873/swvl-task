@@ -24,4 +24,8 @@ export class CarService {
     });
     return car;
   }
+
+  async getCars(): Promise<Car[]> {
+    return await this.carRepo.getCars();
+  }
 }
