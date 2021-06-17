@@ -36,4 +36,10 @@ export class CarService {
     if (!car) throw new BaseHttpException('EN', 601);
     return await this.carRepo.updateCar(input);
   }
+
+  async deleteCar(input: UpdateCarInput): Promise<Car> {
+    const car = await this.carRepo.findOne({ _id: new ObjectID(input.carId) });
+    if (!car) throw new BaseHttpException('EN', 601);
+    return await this.carRepo.deleteCar(input);
+  }
 }

@@ -5,6 +5,7 @@ import { AddCarInput } from './input/add-car.input';
 import { Car, CarDocument } from './schema/car.schema';
 import { BaseRepository } from '../_common/generics/repository.abstract';
 import { UpdateCarInput } from './input/update-car.input';
+import { ObjectID } from 'mongodb';
 
 @Injectable()
 export class CarRepository extends BaseRepository<Car> {
@@ -24,9 +25,19 @@ export class CarRepository extends BaseRepository<Car> {
   }
 
   async updateCar(input: UpdateCarInput): Promise<Car> {
-    return await this.carSchema.findOneAndUpdate({ _id: input.carId }, input, {
-      new: true,
-      lean: true,
+    return await this.carSchema.findOneAndUpdate(
+      { _id: new ObjectID(input.carId) },
+      input,
+      {
+        new: true,
+        lean: true,
+      },
+    );
+  }
+
+  async deleteCar(input: UpdateCarInput): Promise<Car> {
+    return await this.carSchema.findOneAndDelete({
+      _id: new ObjectID(input.carId),
     });
   }
 }

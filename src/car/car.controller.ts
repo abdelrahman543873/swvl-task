@@ -1,9 +1,10 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CarService } from './car.service';
 import { AddCarInput } from './input/add-car.input';
 import { Car } from './schema/car.schema';
 import { UpdateCarInput } from './input/update-car.input';
+import { DeleteCarInput } from './input/delete-car.input';
 
 @Controller('car')
 export class CarController {
@@ -28,5 +29,12 @@ export class CarController {
   @Put('update')
   async updateCar(@Body() input: UpdateCarInput): Promise<Car> {
     return await this.carService.updateCar(input);
+  }
+
+  @ApiTags('car')
+  @ApiResponse({ status: 200, type: Car })
+  @Delete('delete')
+  async deleteCar(@Body() input: DeleteCarInput): Promise<Car> {
+    return await this.carService.deleteCar(input);
   }
 }
