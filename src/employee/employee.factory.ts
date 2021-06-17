@@ -12,7 +12,7 @@ export const buildEmployeeParams = (obj: EmployeeType = {}): Employee => {
   return {
     name: obj.name || faker.random.words(),
     position: obj.position || faker.random.words(),
-    age: obj.age || faker.datatype.number(),
+    age: obj.age || faker.datatype.number(150),
   };
 };
 
@@ -20,11 +20,11 @@ export const employeesFactory = async (
   count = 10,
   obj: EmployeeType = {},
 ): Promise<Employee[]> => {
-  const faqs: Employee[] = [];
+  const employees: Employee[] = [];
   for (let i = 0; i < count; i++) {
-    faqs.push(buildEmployeeParams(obj));
+    employees.push(buildEmployeeParams(obj));
   }
-  return (await EmployeeRepo()).addMany(faqs);
+  return (await EmployeeRepo()).addMany(employees);
 };
 
 export const employeeFactory = async (

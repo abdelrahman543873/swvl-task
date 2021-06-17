@@ -1,3 +1,4 @@
+import { ObjectID } from 'mongodb';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
@@ -5,7 +6,7 @@ export type CarDocument = Car & Document;
 
 @Schema({ timestamps: true, versionKey: false })
 export class Car {
-  _id?: string;
+  _id?: ObjectID;
   @Prop()
   brand: string;
 

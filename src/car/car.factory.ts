@@ -20,11 +20,11 @@ export const carsFactory = async (
   count = 10,
   obj: CarType = {},
 ): Promise<Car[]> => {
-  const faqs: Car[] = [];
+  const cars: Car[] = [];
   for (let i = 0; i < count; i++) {
-    faqs.push(buildCarParams(obj));
+    cars.push(buildCarParams(obj));
   }
-  return (await CarRepo()).addMany(faqs);
+  return (await CarRepo()).addMany(cars);
 };
 
 export const carFactory = async (obj: CarType = {}): Promise<Car> => {

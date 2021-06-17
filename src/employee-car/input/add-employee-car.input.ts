@@ -1,11 +1,12 @@
 import { IsMongoId, IsNumber, IsOptional, IsPositive } from 'class-validator';
+import { ObjectID } from 'mongodb';
 
 export class AddEmployeeCarInput {
   @IsMongoId()
-  employee: string;
+  employee: ObjectID;
 
   @IsMongoId()
-  car: string;
+  car: ObjectID;
 
   @IsOptional()
   @IsNumber()
