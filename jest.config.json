@@ -1,0 +1,25 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "moduleDirectories": ["node_modules", "src", "test"],
+  "rootDir": "./",
+  "testRegex": ".spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "transformIgnorePatterns": ["/node_modules/"],
+  "coverageDirectory": "./coverage",
+  "collectCoverage": false,
+  "verbose": false,
+  "moduleNameMapper": {
+    "src/(.*)": "<rootDir>/src/$1",
+    "test/(.*)": "<rootDir>/test/$1"
+  },
+  "setupFilesAfterEnv": ["<rootDir>/test/before-test-run.ts"],
+  "globalSetup": "<rootDir>/test/setup.ts",
+  "globalTeardown": "<rootDir>/test/teardown.ts",
+  "testEnvironment": "<rootDir>/test/mongo-environment.ts",
+  "displayName": {
+    "name": "blackstoneEit",
+    "color": "blue"
+  }
+}
