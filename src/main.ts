@@ -7,11 +7,10 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const options = new DocumentBuilder()
-    .setTitle('🚀blackstoneEit task🚀')
-    .setDescription('nodejs developer task')
+    .setTitle('🚀Swvl task🚀')
+    .setDescription('backend developer task')
     .setVersion('1.0')
-    .addTag('employee', 'client routes')
-    .addTag('car', 'CRUD operations for cars')
+    .addTag('notification', 'sending push notifications')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
