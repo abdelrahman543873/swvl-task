@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@firebase/app-types": "0.x",
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/mongoose": "^7.2.4",
@@ -30,6 +31,8 @@
     "class-validator": "^0.13.1",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.11.0",
     "mongoose": "^5.12.14",
     "mongoose-aggregate-paginate-v2": "^1.0.42",
     "reflect-metadata": "^0.1.13",
