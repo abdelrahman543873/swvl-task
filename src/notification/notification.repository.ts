@@ -24,8 +24,9 @@ export class NotificationRepository extends BaseRepository<Notification> {
   async addNotifications(notification: GroupNotificationInterface) {
     const notifications = notification.tokens.map(token => {
       return {
-        title: notification.payload.notification.title,
+        token: token,
         body: notification.payload.notification.body,
+        title: notification.payload.notification.title,
       };
     });
     return this.notificationSchema.insertMany(notifications);

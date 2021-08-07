@@ -3,6 +3,7 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Notification } from 'rxjs';
 import { NotificationInput } from './input/notification.input';
 import { NotificationService } from './notification.service';
+import { SendGroupNotificationInput } from './input/send-group-notification.input';
 
 @Controller('notification')
 export class NotificationController {
@@ -16,5 +17,14 @@ export class NotificationController {
       notification.token,
       notification.payload,
     );
+  }
+
+  @ApiTags('notification')
+  @ApiResponse({ status: 201, type: Notification })
+  @Post('sendGroupNotification')
+  async sendGroupNotification(
+    @Body() notification: SendGroupNotificationInput,
+  ) {
+    return this.notificationService.sendGroupNotification(notification);
   }
 }
