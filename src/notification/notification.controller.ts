@@ -12,7 +12,12 @@ export class NotificationController {
   constructor(private notificationService: NotificationService) {}
 
   @ApiTags('notification')
-  @ApiResponse({ status: 201, type: Notification })
+  @ApiResponse({
+    status: 201,
+    type: Notification,
+    description:
+      'sends notification to one device using firebase admin token , input is passed this way cause this is the interface of the firebase admin receives, as long as nodeEnv is testing , firebase will not send the notification',
+  })
   @Post('sendNotification')
   async sendNotification(@Body() notification: NotificationInput) {
     return this.notificationService.sendNotification(
@@ -22,7 +27,12 @@ export class NotificationController {
   }
 
   @ApiTags('notification')
-  @ApiResponse({ status: 201, type: Notification })
+  @ApiResponse({
+    status: 201,
+    type: Notification,
+    description:
+      'sends notification to multiple fcm tokens , using firebase admin if nodeEnv is set to production',
+  })
   @Post('sendGroupNotification')
   async sendGroupNotification(
     @Body() notification: SendGroupNotificationInput,
@@ -31,16 +41,26 @@ export class NotificationController {
   }
 
   @ApiTags('notification')
-  @ApiResponse({ status: 201, type: Notification })
+  @ApiResponse({
+    status: 201,
+    type: Notification,
+    description: 'sends sms messages to one device using twilio',
+  })
   @Post('sendSmsNotification')
   async sendSmsNotification(@Body() notification: SmsNotificationInput) {
     return this.notificationService.sendSmsNotification(notification);
   }
 
   @ApiTags('notification')
-  @ApiResponse({ status: 201, type: Notification })
+  @ApiResponse({
+    status: 201,
+    type: Notification,
+    description: 'sends sms messages to multiple devices using twilio',
+  })
   @Post('sendSmsGroupNotification')
-  async sendSmsGroupNotification(@Body() notification: SmsGroupNotificationInput) {
+  async sendSmsGroupNotification(
+    @Body() notification: SmsGroupNotificationInput,
+  ) {
     return this.notificationService.sendSmsGroupNotification(notification);
   }
 }
