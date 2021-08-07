@@ -1,21 +1,19 @@
 import { NotificationRepo } from '../../test/notification/notification-test-repo';
 import * as faker from 'faker';
-import { ObjectID } from 'mongodb';
 import { Notification } from './model/notification.model';
-import { userFactory } from '../user/user.factory';
 
 interface NotificationType {
-  user?: ObjectID;
+  mobile?: string;
   token?: string;
   title?: string;
   body?: string;
 }
 
-export const buildNotificationParams = async (
+export const buildNotificationParams = (
   obj: NotificationType,
-): Promise<Notification> => {
+): Notification => {
   return {
-    user: obj.user || (await userFactory({}))._id,
+    mobile: obj.mobile || faker.phone.phoneNumber('+20100#######'),
     token: obj.token || faker.internet.mac(),
     title: obj.title || faker.random.word(),
     body: obj.body || faker.random.words(),
@@ -28,7 +26,7 @@ export const notificationsFactory = async (
 ): Promise<Notification[]> => {
   const notifications: Notification[] = [];
   for (let i = 0; i < count; i++) {
-    notifications.push(await buildNotificationParams(obj));
+    notifications.push(buildNotificationParams(obj));
   }
   return (await NotificationRepo()).addMany(notifications);
 };
@@ -36,6 +34,6 @@ export const notificationsFactory = async (
 export const notificationFactory = async (
   obj: NotificationType,
 ): Promise<Notification> => {
-  const params: Notification = await buildNotificationParams(obj);
+  const params: Notification = buildNotificationParams(obj);
   return (await NotificationRepo()).add(params);
 };

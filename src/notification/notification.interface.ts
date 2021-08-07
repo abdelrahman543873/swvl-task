@@ -13,5 +13,5 @@ export interface NotificationInterface {
   body: string;
   title?: string;
   token?: string;
-  user?: ObjectId;
+  mobile?: string;
 }

@@ -19,7 +19,7 @@
   "globalTeardown": "<rootDir>/test/teardown.ts",
   "testEnvironment": "<rootDir>/test/mongo-environment.ts",
   "displayName": {
-    "name": "blackstoneEit",
+    "name": "swvl",
     "color": "blue"
   }
 }

@@ -5,6 +5,7 @@ import { env } from './../_common/helpers/env';
 import { PayloadInterface } from './notification.interface';
 import { GroupNotificationInterface } from './notification.interface';
 import { NotificationRepository } from './notification.repository';
+import { SmsNotificationInput } from './input/sms-notification.input';
 
 @Injectable()
 export class NotificationService {
@@ -30,18 +31,19 @@ export class NotificationService {
       });
   }
 
-  async sendSmsNotification(text: string, to: string) {
+  async sendSmsNotification(smsNotification: SmsNotificationInput) {
     const response =
       env.NODE_ENV === 'production'
         ? await client.messages.create({
-            body: text,
+            body: smsNotification.text,
             from: process.env.TWILIO_NUMBER,
-            to: to,
+            to: smsNotification.to,
           })
         : 'success';
     if (response)
       return await this.notificationRepo.addNotification({
-        body: text,
+        body: smsNotification.text,
+        mobile: smsNotification.to,
       });
   }
 

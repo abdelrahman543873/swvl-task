@@ -8,14 +8,14 @@ export type NotificationDocument = Notification & Document;
 export class Notification {
   _id?: ObjectID;
 
-  @Prop({ type: ObjectID })
-  user?: ObjectID;
+  @Prop()
+  mobile?: string;
 
   @Prop()
   token?: string;
 
-  @Prop({ required: true, trim: true })
-  title: string;
+  @Prop()
+  title?: string;
 
   @Prop({ required: true, trim: true })
   body: string;
