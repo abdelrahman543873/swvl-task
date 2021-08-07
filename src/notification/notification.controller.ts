@@ -5,6 +5,7 @@ import { NotificationService } from './notification.service';
 import { SendGroupNotificationInput } from './input/send-group-notification.input';
 import { NotificationInput } from './input/notification.input';
 import { SmsNotificationInput } from './input/sms-notification.input';
+import { SmsGroupNotificationInput } from './input/sms-group-notificaiton.input';
 
 @Controller('notification')
 export class NotificationController {
@@ -34,5 +35,12 @@ export class NotificationController {
   @Post('sendSmsNotification')
   async sendSmsNotification(@Body() notification: SmsNotificationInput) {
     return this.notificationService.sendSmsNotification(notification);
+  }
+
+  @ApiTags('notification')
+  @ApiResponse({ status: 201, type: Notification })
+  @Post('sendSmsGroupNotification')
+  async sendSmsGroupNotification(@Body() notification: SmsGroupNotificationInput) {
+    return this.notificationService.sendSmsGroupNotification(notification);
   }
 }

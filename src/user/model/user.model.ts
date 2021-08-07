@@ -8,7 +8,7 @@ export type UserDocument = User & Document;
 export class User {
   _id?: ObjectID;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   mobile: string;
 
   @Prop()

@@ -6,6 +6,7 @@ import { PayloadInterface } from './notification.interface';
 import { GroupNotificationInterface } from './notification.interface';
 import { NotificationRepository } from './notification.repository';
 import { SmsNotificationInput } from './input/sms-notification.input';
+import { SmsGroupNotificationInput } from './input/sms-group-notificaiton.input';
 
 @Injectable()
 export class NotificationService {
@@ -47,18 +48,19 @@ export class NotificationService {
       });
   }
 
-  async sendSmsGroupNotification(text: string, to: string[]) {
-    to.forEach((number: string) => {
+  async sendSmsGroupNotification(notification: SmsGroupNotificationInput) {
+    notification.to.forEach((number: string) => {
       env.NODE_ENV === 'production'
         ? client.messages.create({
-            body: text,
+            body: notification.text,
             from: process.env.TWILIO_NUMBER,
             to: number,
           })
         : 'success';
     });
-    return await this.notificationRepo.addNotification({
-      body: text,
+    return await this.notificationRepo.addSmsNotifications({
+      text: notification.text,
+      to: notification.to,
     });
   }
 }

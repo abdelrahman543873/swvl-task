@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { BaseRepository } from 'src/_common/generics/repository.abstract';
 import { Notification, NotificationDocument } from './model/notification.model';
+import { SmsGroupNotificationInput } from './input/sms-group-notificaiton.input';
 import {
   NotificationInterface,
   GroupNotificationInterface,
@@ -27,6 +28,16 @@ export class NotificationRepository extends BaseRepository<Notification> {
         token: token,
         body: notification.payload.notification.body,
         title: notification.payload.notification.title,
+      };
+    });
+    return this.notificationSchema.insertMany(notifications);
+  }
+
+  async addSmsNotifications(notification: SmsGroupNotificationInput) {
+    const notifications = notification.to.map(phoneNumber => {
+      return {
+        mobile: phoneNumber,
+        body: notification.text,
       };
     });
     return this.notificationSchema.insertMany(notifications);
