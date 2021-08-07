@@ -5,7 +5,8 @@ import { env } from '../helpers/env';
   imports: [
     MongooseModule.forRoot(
       // done this way to be able to connect in case of testing
-      global['__MONGO_URI__'] || env.LOCAL_MONGO_DB,
+      // docker and real runtime without docker
+      process.env.MONGO_DB || global['__MONGO_URI__'] || env.LOCAL_MONGO_DB,
       {
         useCreateIndex: true,
         useNewUrlParser: true,
