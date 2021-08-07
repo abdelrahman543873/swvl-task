@@ -5,7 +5,7 @@ import { NotificationService } from './notification.service';
 import { SendGroupNotificationInput } from './input/send-group-notification.input';
 import { NotificationInput } from './input/notification.input';
 import { SmsNotificationInput } from './input/sms-notification.input';
-import { SmsGroupNotificationInput } from './input/sms-group-notificaiton.input';
+import { SmsGroupNotificationInput } from './input/sms-group-notification.input';
 
 @Controller('notification')
 export class NotificationController {

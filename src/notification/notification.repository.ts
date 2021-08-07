@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { BaseRepository } from 'src/_common/generics/repository.abstract';
 import { Notification, NotificationDocument } from './model/notification.model';
-import { SmsGroupNotificationInput } from './input/sms-group-notificaiton.input';
+import { SmsGroupNotificationInput } from './input/sms-group-notification.input';
 import {
   NotificationInterface,
   GroupNotificationInterface,
