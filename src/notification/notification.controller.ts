@@ -1,11 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Notification } from 'rxjs';
 import { NotificationService } from './notification.service';
 import { SendGroupNotificationInput } from './input/send-group-notification.input';
 import { NotificationInput } from './input/notification.input';
 import { SmsNotificationInput } from './input/sms-notification.input';
 import { SmsGroupNotificationInput } from './input/sms-group-notification.input';
+import { Notification } from './model/notification.model';
 
 @Controller('notification')
 export class NotificationController {
@@ -29,7 +29,7 @@ export class NotificationController {
   @ApiTags('notification')
   @ApiResponse({
     status: 201,
-    type: Notification,
+    type: [Notification],
     description:
       'sends notification to multiple fcm tokens , using firebase admin if nodeEnv is set to production',
   })
@@ -54,7 +54,7 @@ export class NotificationController {
   @ApiTags('notification')
   @ApiResponse({
     status: 201,
-    type: Notification,
+    type: [Notification],
     description: 'sends sms messages to multiple devices using twilio',
   })
   @Post('sendSmsGroupNotification')
