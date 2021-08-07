@@ -35,10 +35,12 @@ $ yarn test
 
 ## the app has a full swagger documentation of the api at localhost:3000/api
 
-### start the server and go to the documentation url
+## start the server and go to the documentation url
 
-## notes
+## please allow for about 4 minutes for the packages to install for the first time cause it's installing mongodb in memory server for faster testing and avoiding messing with your local environment
 
-nestjs framework was chosen here to allow for easier documentation of the api using , swagger ui and nestjs/swagger i am able to document the whole api using decorators which is amazing , also all the tests are run in the memory and won't affect your local environment because of the mongodb in memory server , but when you first run the tests of the app allow for extra time for the in memory mongodb server to download , if you don't have a 64 bit machine pls change the arch property in the package.json to be 32 instead of 64 so the tests can run smoothly
 
-also rate limiter is used to allow for limiting sending apis requests to sms or notification service
+# notes
+
+nestjs framework was chosen here to allow for easier documentation of the api using , swagger ui and nestjs/swagger i am able to document the whole api using decorators which is amazing , also all the tests are run in the memory and won't affect your local environment because of the mongodb in memory server , but when you first run the tests of the app allow for extra time for the in memory mongodb server to download , if you don't have a 64 bit machine pls change the arch property in the package.json to be 32 instead of 64 so the tests can run smoothly.
+also rate limiter is used for limiting sending apis requests to sms or notification service
