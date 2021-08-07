@@ -8,14 +8,17 @@ export type NotificationDocument = Notification & Document;
 export class Notification {
   _id?: ObjectID;
 
+  @Prop({ type: ObjectID })
+  user?: ObjectID;
+
+  @Prop()
+  token?: string;
+
   @Prop({ required: true, trim: true })
   title: string;
 
   @Prop({ required: true, trim: true })
   body: string;
-
-  @Prop({ type: ObjectID })
-  user?: ObjectID;
 }
 
 export const NotificationSchema = SchemaFactory.createForClass(Notification);

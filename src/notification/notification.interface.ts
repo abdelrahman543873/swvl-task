@@ -6,11 +6,12 @@ export interface GroupNotificationInterface {
 
 export interface PayloadInterface {
   notification: { title: string; body: string };
-  data: Record<any, any>;
+  data?: Record<any, any>;
 }
 
 export interface NotificationInterface {
-  title?: string;
   body: string;
+  title?: string;
+  token?: string;
   user?: ObjectId;
 }

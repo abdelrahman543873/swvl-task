@@ -3,7 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { BaseRepository } from 'src/_common/generics/repository.abstract';
 import { Notification, NotificationDocument } from './model/notification.model';
-import { NotificationInterface } from './notification.interface';
+import {
+  NotificationInterface,
+  GroupNotificationInterface,
+} from './notification.interface';
 
 @Injectable()
 export class NotificationRepository extends BaseRepository<Notification> {
@@ -16,5 +19,15 @@ export class NotificationRepository extends BaseRepository<Notification> {
 
   async addNotification(notification: NotificationInterface) {
     return this.notificationSchema.create(notification);
+  }
+
+  async addNotifications(notification: GroupNotificationInterface) {
+    const notifications = notification.tokens.map(token => {
+      return {
+        title: notification.payload.notification.title,
+        body: notification.payload.notification.body,
+      };
+    });
+    return this.notificationSchema.insertMany(notifications);
   }
 }

@@ -5,7 +5,6 @@ import { env } from './../_common/helpers/env';
 import { PayloadInterface } from './notification.interface';
 import { GroupNotificationInterface } from './notification.interface';
 import { NotificationRepository } from './notification.repository';
-import { ObjectId } from 'mongoose';
 
 @Injectable()
 export class NotificationService {
@@ -16,28 +15,22 @@ export class NotificationService {
         ? await admin.messaging().sendMulticast(notification)
         : 'success';
     if (response)
-      return await this.notificationRepo.addNotification(
-        notification.payload.notification,
-      );
+      return await this.notificationRepo.addNotifications(notification);
   }
 
-  async sendNotification(
-    notification: string,
-    payload: PayloadInterface,
-    user: ObjectId,
-  ) {
+  async sendNotification(token: string, payload: PayloadInterface) {
     const response =
       env.NODE_ENV === 'production'
-        ? await admin.messaging().sendToDevice(notification, payload)
+        ? await admin.messaging().sendToDevice(token, payload)
         : 'success';
     if (response)
       return await this.notificationRepo.addNotification({
+        token,
         ...payload.notification,
-        user,
       });
   }
 
-  async sendSmsNotification(text: string, to: string, user: ObjectId) {
+  async sendSmsNotification(text: string, to: string) {
     const response =
       env.NODE_ENV === 'production'
         ? await client.messages.create({
@@ -49,7 +42,6 @@ export class NotificationService {
     if (response)
       return await this.notificationRepo.addNotification({
         body: text,
-        user,
       });
   }
 
