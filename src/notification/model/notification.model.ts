@@ -13,6 +13,9 @@ export class Notification {
 
   @Prop({ required: true, trim: true })
   body: string;
+
+  @Prop({ type: ObjectID })
+  user?: ObjectID;
 }
 
 export const NotificationSchema = SchemaFactory.createForClass(Notification);

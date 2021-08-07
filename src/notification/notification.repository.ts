@@ -1,0 +1,20 @@
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { BaseRepository } from 'src/_common/generics/repository.abstract';
+import { Notification, NotificationDocument } from './model/notification.model';
+import { NotificationInterface } from './notification.interface';
+
+@Injectable()
+export class NotificationRepository extends BaseRepository<Notification> {
+  constructor(
+    @InjectModel(Notification.name)
+    private notificationSchema: Model<NotificationDocument>,
+  ) {
+    super(notificationSchema);
+  }
+
+  async addNotification(notification: NotificationInterface) {
+    return this.notificationSchema.create(notification);
+  }
+}
