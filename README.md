@@ -25,6 +25,7 @@ $ yarn
 $ yarn start
 #or
 $ docker-compose up
+# you need to run yarn start at least once before running docker-compose up so that the database is create on your mongodb server
 
 # running the tests
 $ yarn test
